@@ -1,0 +1,212 @@
+
+# ---------------------------
+# Server settings (external Tomcat ignores these)
+# ---------------------------
+# Remove server.port and ssl, Tomcat manages port and SSL
+
+# ---------------------------
+# Keycloak / SAML configuration
+# ---------------------------
+#spring:
+#  security:
+#    saml2:
+#      relyingparty:
+#        registration:
+#          keycloak:
+#            identityprovider:
+#              entity-id: https://localhost:7171/saml2/service-provider-metadata/keycloak
+#              verification.credentials:
+#                - certificate-location: classpath:keycloak.crt
+#              singlesignon.url: https://localhost:6771/realms/Test2/protocol/saml
+#            signing:
+#              credentials:
+#                - private-key-location: classpath:rp-key1.key
+#                  certificate-location: classpath:rp-cert.crt
+#            assertingparty:
+#              metadata-uri: https://localhost:6771/realms/Test2/protocol/saml/descriptor
+#
+## ---------------------------
+## Oracle datasource
+## ---------------------------
+#app:
+#  datasource:
+#    url: 
+#    username: 
+#    password: 
+#
+## ---------------------------
+## Flywire
+## ---------------------------
+#flywire:
+#  mode: sandbox  # sandbox or production
+#
+#api:
+#  secret: 
+#  public-key: 
+#  endpoint: https://api-platform-sandbox.flywire.com/ # or production endpoint https://api-platform.flywire.com/
+#
+## ---------------------------
+## Language / locale
+## ---------------------------
+#langapp:
+#  language: en
+#  country-code: US
+#
+## ---------------------------
+## Proxy settings (if needed)
+## ---------------------------
+#proxy:
+#  enabled: false
+#  host: 172.191.80.152
+#  port: 3128
+#
+## ---------------------------
+## Banner system
+## ---------------------------
+#banner:
+#  academic-system: quarters # or semesters or quarters
+#  address-type: MA
+#  email-type: CAMP
+#---
+## ---------------------------BELOW THIS LINE NO CHANGES NEEDED---------------------------
+## ---------------------------
+## Oracle datasource
+## ---------------------------
+#app:
+#  datasource:
+#    driver-class-name: oracle.jdbc.OracleDriver
+#    configuration:
+#      maximum-pool-size: 30
+#
+## ---------------------------
+## Logging
+## ---------------------------
+#logging:
+#  level:
+#    com.doctums.banner.paymentgateway: DEBUG
+#    org:
+#      springframework:
+#        security: DEBUG
+#        security.saml2: DEBUG
+#        security.saml2.provider.service.authentication: DEBUG
+#        security.saml2.provider.service.OpenSaml4AuthenticationProvider: DEBUG
+#        context.annotation: DEBUG
+
+# ---------------------------
+# Server configuration
+# ---------------------------
+# uncomment if running in intellij
+server:
+  port: 7171
+  ssl:
+    enabled: true
+    key-store: classpath:mycert.pfx
+    key-store-password: yourpassword
+    key-store-type: PKCS12
+  servlet:
+    session:
+      persistent: true
+      cookie:
+        same-site: lax
+        persistent: true
+        name: JSESSIONID
+        domain: localhost
+        path: /
+        http-only: true
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+
+
+#Old:
+#server:
+#  port: 7171
+#  ssl:
+#    enabled: true
+#    key-store: classpath:mycert.pfx
+#    key-store-password: yourpassword
+#    key-store-type: PKCS12
+#  servlet:
+#    session:
+#      persistent: true
+#      cookie:
+#        same-site: lax
+#        persistent: true
+#        name: JSESSIONID
+#        domain: localhost
+#        path: /
+#        http-only: true
+
+#keycloak configuration:
+spring:
+  security:
+    saml2:
+      relyingparty:
+        registration:
+          keycloak:
+            identityprovider:
+              entity-id: https://localhost:7171/saml2/service-provider-metadata/keycloak
+              verification.credentials:
+                - certificate-location: classpath:keycloak.crt
+              singlesignon.url: https://localhost:6771/realms/Test2/protocol/saml
+              #singlesignon.sign-request: false
+            signing:
+              credentials:
+                - private-key-location: classpath:rp-key1.key
+                  certificate-location: classpath:rp-cert.crt
+            assertingparty:
+              metadata-uri: https://localhost:6771/realms/Test2/protocol/saml/descriptor
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+
+#oracle configuration:
+app:
+  datasource:
+    url: 
+    username: 
+    password: 
+    driver-class-name: oracle.jdbc.OracleDriver
+    configuration:
+      maximum-pool-size: 30
+#  jpa:
+#    database-platform: org.hibernate.dialect.Oracle12cDialect
+#    hibernate:
+#      ddl-auto: none
+#    show-sql: true
+
+logging:
+  level:
+    pl.paynowapp.samples: DEBUG
+    org:
+      springframework:
+        security: DEBUG
+        security.saml2: DEBUG
+        security.saml2.provider.service.authentication: DEBUG
+        security.saml2.provider.service.OpenSaml4AuthenticationProvider: DEBUG
+        context.annotation: DEBUG
+
+#flywire:
+flywire:
+  mode: sandbox  # sandbox or production
+
+api:
+  secret: 
+  public-key: 
+  #  endpoint: https://gateway.demo.flywire.com/v1/transfers.json
+  endpoint: https://api-platform-sandbox.flywire.com/
+
+langapp:
+  language: en
+  country-code: US
+
+#proxy options:
+proxy:
+  enabled: false     # set to false to disable proxy
+  host: 172.191.80.152
+  port: 3128
+
+banner:
+  academic-system: quarters # or semesters or quarters
+  address-type: MA # change the address type if needed e.g. MA, FR, etc.
+  email-type: CAMP # change the email type if needed e.g. HOME, CAMP, PERS, ETC.

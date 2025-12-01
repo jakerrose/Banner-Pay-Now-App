@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$/PaymentGateway/src/main/resources/archetype-resources" includeSubdirectories="true" />
+    </excludeFromCompile>
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="PaymentGateway" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="caller" target="17" />
+      <module name="callme" target="17" />
+      <module name="gateway" target="17" />
+      <module name="oauth" target="1.5" />
+      <module name="PayNowApp" target="1.5" />
+      <module name="saml" target="1.5" />
+      <module name="secure-caller" target="17" />
+      <module name="secure-caller-bundle" target="17" />
+      <module name="secure-callme" target="17" />
+      <module name="secure-callme-bundle" target="17" />
+      <module name="ssl" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="PaymentGateway" options="" />
+      <module name="caller" options="-parameters" />
+      <module name="callme" options="-parameters" />
+      <module name="gateway" options="-parameters" />
+      <module name="secure-caller" options="-parameters" />
+      <module name="secure-caller-bundle" options="-parameters" />
+      <module name="secure-callme" options="-parameters" />
+      <module name="secure-callme-bundle" options="-parameters" />
+    </option>
+  </component>
+</project>

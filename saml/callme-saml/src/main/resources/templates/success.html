@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<style>
+  body { text-align: center; font-family: sans-serif; padding-top: 100px; }
+</style>
+<title>Success</title>
+<body>
+<h2>Your payment is now in progress. Flywire will send you further details and a tracking link by email or text.</h2>
+<!--Jumbotron-->
+<div class="jumbotron jumbotron-fluid bg-primary text-center">
+  <div class="container">
+    <div class="text-center">
+      <img class="img-fluid" src="./images/flywire-logo-scaled.jpg" width="327" alt="flywire logo">
+    </div>
+  </div>
+</div>
+<h2>Thank you for using Flywire for your payment!</h2>
+<br>
+<label>Unique Flywire Payment Reference: <span th:text="${reference}" id="refId"></span></label>
+<br>
+<br>
+<label>Your tracking link: <span id="trackingId"></span></label>
+<br>
+
+<br>
+<br>
+<!-- change link to your school's -->
+<a href="https://www.pdx.edu">Return to your school's site</a>
+<br>
+<br>
+<div class="text-center">
+  <!-- change image to your school's logo (static folder, images)-->
+  <img class="img-fluid" src="./images/model-university.png" width="327" alt="University logo">
+</div>
+</body>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const trackingUrl = params.get("tracking_url");
+
+  if (trackingUrl) {
+      const link = document.createElement("a");
+      link.href = trackingUrl;
+      link.textContent = trackingUrl;
+      link.target = "_blank"; // optional: opens in new tab
+      document.getElementById("trackingId").appendChild(link);
+  }
+</script>
+</html>
